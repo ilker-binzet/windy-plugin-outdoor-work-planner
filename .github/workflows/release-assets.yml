@@ -1,0 +1,76 @@
+name: Attach published plugin files
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Existing Windy plugin version and GitHub release (without v)'
+        required: true
+        default: '0.1.0'
+
+permissions:
+  contents: write
+
+jobs:
+  attach:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      VERSION: ${{ inputs.version }}
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify the published Windy files
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo '::error::Version must use the format 0.1.0.'
+            exit 1
+          fi
+          gh release view "v${VERSION}" >/dev/null
+          base_url="https://windy-plugins.com/3164654/windy-plugin-outdoor-work-planner/${VERSION}"
+          mkdir -p release bundle/outdoor-work-planner
+          curl --fail --silent --show-error --retry 3 "$base_url/plugin.min.js" -o release/plugin.min.js
+          curl --fail --silent --show-error --retry 3 "$base_url/plugin.json" -o release/plugin.json
+          curl --fail --silent --show-error --retry 3 "$base_url/screenshot.jpg" -o bundle/outdoor-work-planner/screenshot.jpg
+          jq -e --arg version "$VERSION" '
+            .name == "windy-plugin-outdoor-work-planner" and
+            .version == $version and
+            .author == "Ilker Binzet" and
+            .windyUserId == 3164654 and
+            .private == false
+          ' release/plugin.json >/dev/null
+          test -s release/plugin.min.js
+          cp release/plugin.min.js release/plugin.json LICENSE NOTICE bundle/outdoor-work-planner/
+          cat > bundle/outdoor-work-planner/INSTALL.txt <<EOF
+          Outdoor Work Planner ${VERSION}
+          By Ilker Binzet
+
+          This is a plugin for Windy.com.
+          Use the official Windy-hosted URL in Windy's plugin installation flow:
+          ${base_url}/plugin.min.js
+
+          This ZIP contains a copy of the published JavaScript, metadata,
+          screenshot and license notices. Downloading or extracting the ZIP
+          does not install the plugin automatically.
+
+          Source: https://github.com/ilker-binzet/windy-plugin-outdoor-work-planner
+          EOF
+          (
+            cd bundle
+            zip -q -r "../release/outdoor-work-planner-${VERSION}.zip" outdoor-work-planner
+          )
+          (
+            cd release
+            sha256sum plugin.min.js plugin.json "outdoor-work-planner-${VERSION}.zip" > SHA256SUMS.txt
+          )
+      - name: Attach compiled files and ZIP to the existing GitHub release
+        run: |
+          gh release upload "v${VERSION}" \
+            release/plugin.min.js \
+            release/plugin.json \
+            "release/outdoor-work-planner-${VERSION}.zip" \
+            release/SHA256SUMS.txt
+          echo "Attached the exact Windy-hosted plugin files to release v${VERSION}." >> "$GITHUB_STEP_SUMMARY"

@@ -16,6 +16,8 @@ https://windy-plugins.com/3164654/windy-plugin-outdoor-work-planner/0.1.0/plugin
 
 [GitHub release](https://github.com/ilker-binzet/windy-plugin-outdoor-work-planner/releases/tag/v0.1.0)
 
+The release's **Assets** section provides the compiled `plugin.min.js`, plugin metadata and a ZIP containing the published files and installation instructions. GitHub also adds separate source-code archives automatically. Windy installs the plugin from the official URL above; downloading the ZIP alone does not install it.
+
 The plugin is configured for public review, but appearing in Windy's plugin list requires Windy's separate approval. A ready-to-post review request is available in [docs/windy-review-submission.md](docs/windy-review-submission.md).
 
 ## Features
@@ -89,6 +91,8 @@ The source code is public under ISC. The plugin is configured with `private: fal
 5. Submit the plugin for Windy review through the community thread linked in the [official publication guide](https://docs.windy-plugins.com/getting-started/publishing-plugin.html). The store listing appears only after Windy approval.
 
 Increase the plugin and package version before uploading an updated version. The workflow is manual and never uploads on ordinary pushes.
+
+After a version has been uploaded to Windy and has a GitHub release, run **Actions → Attach published plugin files** with that version to attach the exact files served by Windy. This workflow does not republish or replace the Windy-hosted version.
 
 ## Code
 
