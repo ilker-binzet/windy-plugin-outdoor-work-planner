@@ -16,7 +16,7 @@ const config: ExternalPluginConfig = {
     routerPath: '/outdoor-work-planner/:lat?/:lon?',
     addToContextmenu: true,
     listenToSingleclick: true,
-    private: true,
+    private: false,
 };
 
 export default config;

@@ -9,9 +9,16 @@ permissions:
 jobs:
     publish-plugin:
         runs-on: ubuntu-latest
-        env:
-            WINDY_API_KEY: '${{ secrets.WINDY_API_KEY }}'
+        timeout-minutes: 15
         steps:
+            - name: Check Windy publishing key
+              env:
+                  WINDY_API_KEY: '${{ secrets.WINDY_API_KEY }}'
+              run: |
+                  if [ -z "$WINDY_API_KEY" ]; then
+                    echo "::error::WINDY_API_KEY is missing. Create a Windy Plugins API key at https://api.windy.com/keys and add it as a repository Actions secret named WINDY_API_KEY."
+                    exit 1
+                  fi
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
               with:
@@ -22,11 +29,9 @@ jobs:
                   npm ci
                   npm run build
             - name: Publish Plugin
+              env:
+                  WINDY_API_KEY: '${{ secrets.WINDY_API_KEY }}'
               run: |
-                  if [ -z "$WINDY_API_KEY" ]; then
-                    echo "Secret WINDY_API_KEY is not configured" >&2
-                    exit 1
-                  fi
                   cd dist
                   echo "Creating plugin archive..."
                   echo "{\"repositoryName\": \"${{ github.repository }}\", \"commitSha\": \"${{ github.sha }}\", \"repositoryOwner\": \"${{ github.repository_owner }}\"}" > /tmp/plugin-info.json

@@ -68,7 +68,15 @@ Install Chromium once with `npx playwright install chromium` before browser test
 
 ## Publication
 
-The source code is public under ISC. Windy distribution is configured **private**; the plugin has not been listed in the Windy store. Publishing needs your own repository and Windy Plugins API credential, and a public store listing requires Windy's review. See the [publication guide](https://docs.windy-plugins.com/getting-started/publishing-plugin.html). The included GitHub workflow is manual.
+The source code is public under ISC. The plugin is configured with `private: false` for submission to Windy's public listing; publication and Windy approval are separate steps.
+
+1. Create a **Windy Plugins API** key at https://api.windy.com/keys.
+2. Add it as a repository Actions secret named **WINDY_API_KEY** under **Settings → Secrets and variables → Actions**. Never commit the key.
+3. Open **Actions → publish-plugin → Run workflow** and select `main`. The workflow checks the key before building and uploads the packaged plugin to Windy's official server.
+4. Copy the installation URL from the **Publish Plugin** job log. Install and verify that exact published version.
+5. Submit the plugin for Windy review through the community thread linked in the [official publication guide](https://docs.windy-plugins.com/getting-started/publishing-plugin.html). The store listing appears only after Windy approval.
+
+Increase the plugin and package version before uploading an updated version. The workflow is manual and never uploads on ordinary pushes.
 
 ## Code
 
