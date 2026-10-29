@@ -1,0 +1,16 @@
+.tmp
+tmp
+.DS_Store
+.vscode
+.rollup.cache
+.secret-api-key.sh
+nohup.out
+node_modules
+*.log
+dist/*
+
+
+preview-dist/
+test-results/
+playwright-report/
+*.tsbuildinfo

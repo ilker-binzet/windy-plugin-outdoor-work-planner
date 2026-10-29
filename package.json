@@ -1,0 +1,53 @@
+{
+  "name": "windy-plugin-outdoor-work-planner",
+  "version": "0.1.0",
+  "description": "Find weather windows for outdoor work based on your task, schedule, and weather limits.",
+  "main": "dist/plugin.min.js",
+  "type": "module",
+  "scripts": {
+    "build": "rm -rf dist && mkdir dist && SERVE=false rollup -c && cp package.json dist/",
+    "start": "rollup -w -c",
+    "dev": "vite --host 0.0.0.0",
+    "build:preview": "vite build",
+    "test": "vitest run",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "test:e2e": "playwright test",
+    "test:bundle": "npm run build && vitest run --config vitest.bundle.config.ts",
+    "test:windy": "npm run build && node scripts/verify-windy.mjs",
+    "format": "prettier --plugin prettier-plugin-svelte --write \"src/**/*.{ts,svelte}\" \"preview/**/*.{ts,svelte}\" \"tests/**/*.ts\" \"e2e/**/*.ts\" \"*.config.ts\""
+  },
+  "keywords": [
+    "windy",
+    "windy.com",
+    "plugins",
+    "weather",
+    "outdoor-work",
+    "work-planning",
+    "svelte",
+    "typescript"
+  ],
+  "license": "ISC",
+  "homepage": "https://ca.linkedin.com/in/binzet-me",
+  "dependencies": {
+    "@js-temporal/polyfill": "^0.5.1",
+    "@windycom/plugin-devtools": "^3.0.3",
+    "svelte": "^4.2.20"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@sveltejs/vite-plugin-svelte": "^3.1.2",
+    "@types/node": "^24.19.2",
+    "magic-string": "^0.30.21",
+    "svelte-check": "^3.8.6",
+    "vite": "^5.4.21",
+    "vitest": "^3.2.7"
+  },
+  "author": "Ilker Binzet",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilker-binzet/windy-plugin-outdoor-work-planner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ilker-binzet/windy-plugin-outdoor-work-planner/issues"
+  }
+}

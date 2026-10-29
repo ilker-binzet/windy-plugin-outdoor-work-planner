@@ -1,0 +1,14 @@
+Outdoor Work Planner
+Copyright (c) 2026 Ilker Binzet
+
+Based on the Windy Plugin Template by Windyty, S.E.
+https://github.com/windycom/windy-plugin-template
+Template source: commit 94b4033, retrieved 2026-10-29.
+The template declares the ISC license in its package.json.
+
+Windy.com is provided by its respective owner. This project is an
+independent plugin and is not an official Windy product.
+
+Third-party packages are not relicensed by this project. Their original
+copyright notices and licenses apply; dependency versions are recorded
+in package-lock.json.
