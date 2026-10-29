@@ -14,7 +14,7 @@ Version **0.1.0** is uploaded to Windy's official plugin host. Use this URL in W
 https://windy-plugins.com/3164654/windy-plugin-outdoor-work-planner/0.1.0/plugin.min.js
 ```
 
-[GitHub release and published assets](https://github.com/ilker-binzet/windy-plugin-outdoor-work-planner/releases/tag/v0.1.0)
+[GitHub release](https://github.com/ilker-binzet/windy-plugin-outdoor-work-planner/releases/tag/v0.1.0)
 
 The plugin is configured for public review, but appearing in Windy's plugin list requires Windy's separate approval. A ready-to-post review request is available in [docs/windy-review-submission.md](docs/windy-review-submission.md).
 
