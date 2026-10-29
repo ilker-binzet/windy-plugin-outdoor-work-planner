@@ -6,6 +6,18 @@ An English Windy.com plugin by **Ilker Binzet**.
 
 [LinkedIn](https://ca.linkedin.com/in/binzet-me) · [GitHub](https://github.com/ilker-binzet)
 
+## Install the published plugin
+
+Version **0.1.0** is uploaded to Windy's official plugin host. Use this URL in Windy's plugin installation flow:
+
+```text
+https://windy-plugins.com/3164654/windy-plugin-outdoor-work-planner/0.1.0/plugin.min.js
+```
+
+[GitHub release and published assets](https://github.com/ilker-binzet/windy-plugin-outdoor-work-planner/releases/tag/v0.1.0)
+
+The plugin is configured for public review, but appearing in Windy's plugin list requires Windy's separate approval. A ready-to-post review request is available in [docs/windy-review-submission.md](docs/windy-review-submission.md).
+
 ## Features
 
 Select a location, choose a work profile, set working hours and required duration, and find uninterrupted forecast intervals matching your limits. Painting, roofing, concrete work, general outdoor work and custom profiles are included. Edit or disable individual wind, gust, rain, temperature and humidity limits. Results explain exceeded limits and missing data. Settings are stored locally. Appearance supports **System**, **Light** and **Dark**, with a remembered manual choice.
