@@ -8,13 +8,13 @@ An English Windy.com plugin by **Ilker Binzet**.
 
 ## Install the published plugin
 
-Version **0.1.0** is uploaded to Windy's official plugin host. Use this URL in Windy's plugin installation flow:
+Version **0.2.0** is uploaded to Windy's official plugin host. Use this URL in Windy's plugin installation flow:
 
 ```text
-https://windy-plugins.com/3164654/windy-plugin-outdoor-work-planner/0.1.0/plugin.min.js
+https://windy-plugins.com/3164654/windy-plugin-outdoor-work-planner/0.2.0/plugin.min.js
 ```
 
-[GitHub release](https://github.com/ilker-binzet/windy-plugin-outdoor-work-planner/releases/tag/v0.1.0)
+[GitHub release](https://github.com/ilker-binzet/windy-plugin-outdoor-work-planner/releases/tag/v0.2.0)
 
 The release's **Assets** section provides the compiled `plugin.min.js`, plugin metadata and a ZIP containing the published files and installation instructions. GitHub also adds separate source-code archives automatically. Windy installs the plugin from the official URL above; downloading the ZIP alone does not install it.
 
