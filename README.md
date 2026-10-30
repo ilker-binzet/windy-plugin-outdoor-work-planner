@@ -18,15 +18,26 @@ https://windy-plugins.com/3164654/windy-plugin-outdoor-work-planner/0.1.0/plugin
 
 The release's **Assets** section provides the compiled `plugin.min.js`, plugin metadata and a ZIP containing the published files and installation instructions. GitHub also adds separate source-code archives automatically. Windy installs the plugin from the official URL above; downloading the ZIP alone does not install it.
 
-The plugin is configured for public review, but appearing in Windy's plugin list requires Windy's separate approval.
+Outdoor Work Planner v0.1.0 is published in Windy's public plugin list. Updated versions are uploaded separately and follow Windy's update process.
 
 ## Features
 
 Select a location, choose a work profile, set working hours and required duration, and find uninterrupted forecast intervals matching your limits. Painting, roofing, concrete work, general outdoor work and custom profiles are included. Edit or disable individual wind, gust, rain, temperature and humidity limits. Results explain exceeded limits and missing data. Settings are stored locally. Appearance supports **System**, **Light** and **Dark**, with a remembered manual choice.
 
+## Planning and location controls
+
+- **Plan**: select the work profile, local working hours and required duration.
+- **Limits**: review weather thresholds separately, enable or disable checks and reset a profile.
+- **Results**: inspect matching work windows and the forecast interval details.
+- **Map**: switch to a small floating location panel without losing your settings. Use **Back to planner** to return, or the close button to return to Windy.
+
+Location controls use Windy's native city search, device GPS, the current map center and map taps. Manual coordinates are available under **Change → Enter coordinates** in the main planner. GPS requires location permission; unavailable or approximate IP locations are never silently presented as a precise device location. Coordinates remain visible when reverse place-name lookup fails. Changing a location updates the forecast automatically; **Find Work Windows** opens the Results tab.
+
+The planner owns a bounded scrolling region so the header and section tabs remain reachable in short desktop and mobile windows. Native input, touch scrolling, keyboard tab navigation, visible focus, press states and reduced-motion preferences are supported.
+
 ## Screenshots
 
-<img src="src/screenshot.jpg" alt="Outdoor Work Planner in light mode with sample forecast data" width="300" /> <img src="docs/screenshot-dark.png" alt="Outdoor Work Planner in dark mode with sample forecast data" width="300" />
+<img src="src/screenshot.jpg" alt="Outdoor Work Planner in light mode inside Windy" width="300" /> <img src="docs/screenshot-dark.png" alt="Outdoor Work Planner in dark mode with sample forecast data" width="300" />
 
 ## Development preview
 
@@ -72,7 +83,7 @@ npm run build:preview
 
 Install Chromium once with `npx playwright install chromium` before browser tests. Unit tests cover boundaries, gaps, missing data, normalization, local time, overnight shifts, DST, preferences, appearance and clock cleanup. Browser tests exercise actual controls, persistence, failures, mobile layout and themes.
 
-`npm run test:windy` performs a network-dependent smoke test in the current public Windy runtime. Browser routing serves the local bundle at a virtual development URL; the test mounts it against real Windy modules, obtains live forecasts, searches, changes appearance and destroys the component. Both regular and minified bundles are tested without publishing or saving an account installation. This is separate from Windy's developer-mode installer and store approval.
+`npm run test:windy` performs a network-dependent smoke test in the current public Windy runtime. Browser routing serves the local bundle at a virtual development URL; the test mounts it through Windy’s actual `ExternalSveltePlugin` window manager, obtains live forecasts, checks desktop wheel/mobile touch scrolling without moving the map, selects map points, exercises browser-emulated GPS through Windy’s geolocation API, selects a native city-search result, returns to the planner and closes it. It also checks both appearances and native window/marker cleanup. Both regular and minified bundles are tested without publishing or saving an account installation. This is separate from Windy's developer-mode installer and store approval.
 
 `npm run build` produces `dist/plugin.js`, `dist/plugin.min.js`, `dist/plugin.json` and `dist/screenshot.jpg`. `npm run build:preview` produces a standalone demonstration in `preview-dist/`.
 
@@ -82,7 +93,7 @@ Install Chromium once with `npx playwright install chromium` before browser test
 
 ## Publication
 
-The source code is public under ISC. The plugin is configured with `private: false` for submission to Windy's public listing; publication and Windy approval are separate steps.
+The source code is public under ISC. The plugin uses `private: false`. Version 0.1.0 has been approved for Windy’s public listing; later updates use the official update process.
 
 1. Create a **Windy Plugins API** key at https://api.windy.com/keys.
 2. Add it as a repository Actions secret named **WINDY_API_KEY** under **Settings → Secrets and variables → Actions**. Never commit the key.
@@ -90,7 +101,7 @@ The source code is public under ISC. The plugin is configured with `private: fal
 4. Copy the installation URL from the **Publish Plugin** job log. Install and verify that exact published version.
 5. Submit the plugin for Windy review through the community thread linked in the [official publication guide](https://docs.windy-plugins.com/getting-started/publishing-plugin.html). The store listing appears only after Windy approval.
 
-Increase the plugin and package version before uploading an updated version. The workflow is manual and never uploads on ordinary pushes.
+Increase the plugin and package version before uploading an updated version. Notify Windy of the update as described in the [official update guide](https://docs.windy-plugins.com/getting-started/updating-plugin.html). The workflow is manual and never uploads on ordinary pushes.
 
 After a version has been uploaded to Windy and has a GitHub release, run **Actions → Attach published plugin files** with that version to attach the exact files served by Windy. This workflow does not republish or replace the Windy-hosted version.
 

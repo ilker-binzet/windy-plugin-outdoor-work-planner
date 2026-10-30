@@ -94,25 +94,37 @@
 </script>
 
 <style>
+    .owp-section-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 16px;
+    }
     .owp-limit-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 13px 18px;
+        grid-template-columns: 1fr;
+    }
+    .owp-limit-field {
+        display: grid;
+        grid-template-columns: 1fr 160px;
+        align-items: center;
+        gap: 16px;
+        padding: 18px 0;
+        border-bottom: 1px solid var(--owp-border);
     }
     .owp-limit-label {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        gap: 6px;
-        margin-bottom: 6px;
+        justify-content: space-between;
+        gap: 10px;
         font-size: 13px;
         font-weight: 600;
-        min-height: 18px;
     }
     .owp-enable-check {
         accent-color: var(--owp-green);
-        width: 13px;
-        height: 13px;
+        width: 20px;
+        height: 20px;
         flex-shrink: 0;
         margin: 0;
         cursor: pointer;
@@ -121,9 +133,9 @@
         display: flex;
         align-items: center;
         border: 1px solid var(--owp-border);
-        border-radius: 5px;
+        border-radius: 7px;
         overflow: hidden;
-        height: 39px;
+        height: 48px;
         background: var(--owp-surface);
     }
     .owp-unit-input:focus-within {
@@ -136,41 +148,39 @@
         box-shadow: none !important;
         width: 100%;
         min-width: 0;
-        padding: 9px 10px !important;
+        padding: 10px 12px !important;
         height: 100% !important;
         background: transparent !important;
     }
     .owp-unit-input span {
         color: var(--owp-muted);
-        padding-right: 10px;
+        padding-right: 12px;
         font-size: 12px;
         white-space: nowrap;
     }
     .owp-muted-control {
         background: var(--owp-soft);
+        opacity: 0.6;
     }
     .owp-temperature-field {
-        grid-column: 2;
-        grid-row: 2;
+        grid-template-columns: 1fr;
+        gap: 12px;
     }
     .owp-temperature-range {
         display: flex;
-        gap: 6px;
+        gap: 10px;
         align-items: center;
-        height: 39px;
     }
     .owp-temperature-part {
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 10px;
         min-width: 0;
         flex: 1;
     }
     .owp-temperature-part input[type='number'] {
         width: 100%;
         min-width: 0;
-        height: 39px;
-        padding: 8px 6px !important;
     }
     .owp-range-unit,
     .owp-range-dash {
@@ -178,29 +188,20 @@
         color: var(--owp-muted);
     }
     .owp-field-help {
-        font-size: 11px !important;
-        margin: 9px 0 0 !important;
+        font-size: 12px !important;
+        margin: 16px 0 0 !important;
         color: var(--owp-muted);
     }
-    .owp-limit-field:nth-child(4) {
-        grid-row: 3;
-        grid-column: 1;
-    }
-    @media (max-width: 360px) {
-        .owp-limit-grid {
+    @media (max-width: 380px) {
+        .owp-limit-field {
+            grid-template-columns: 1fr 122px;
             gap: 12px;
+        }
+        .owp-temperature-field {
+            grid-template-columns: 1fr;
         }
         .owp-limit-label {
             font-size: 12px;
-        }
-        .owp-temperature-range {
-            gap: 3px;
-        }
-        .owp-temperature-part {
-            gap: 3px;
-        }
-        .owp-unit-input span {
-            padding-right: 6px;
         }
     }
 </style>

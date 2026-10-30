@@ -217,8 +217,8 @@
     }
     .owp-results {
         border-top: 1px solid var(--owp-border);
-        padding-top: 20px;
-        margin-top: 20px;
+        padding-top: 0;
+        margin-top: 0;
     }
     .owp-result-summary {
         margin: 3px 0 14px !important;

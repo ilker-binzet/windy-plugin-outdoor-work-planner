@@ -2,7 +2,7 @@ import type { ExternalPluginConfig } from '@windy/interfaces';
 
 const config: ExternalPluginConfig = {
     name: 'windy-plugin-outdoor-work-planner',
-    version: '0.1.0',
+    version: '0.2.0',
     icon: '🛠️',
     title: 'Outdoor Work Planner',
     description:
@@ -10,9 +10,9 @@ const config: ExternalPluginConfig = {
     author: 'Ilker Binzet',
     repository: 'https://github.com/ilker-binzet/windy-plugin-outdoor-work-planner',
     homepage: 'https://ca.linkedin.com/in/binzet-me',
-    desktopUI: 'rhpane',
+    desktopUI: 'embedded',
     desktopWidth: 520,
-    mobileUI: 'fullscreen',
+    mobileUI: 'small',
     routerPath: '/outdoor-work-planner/:lat?/:lon?',
     addToContextmenu: true,
     listenToSingleclick: true,

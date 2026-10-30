@@ -48,14 +48,21 @@ test('recalculates edits, persists profile limits, and shows a no-match state', 
     page,
 }) => {
     await page.goto('/');
+    await page.getByRole('tab', { name: 'Limits', exact: true }).click();
     await page.getByLabel('Maximum Wind', { exact: true }).fill('0');
+    await page.getByRole('tab', { name: 'Plan', exact: true }).click();
     await page.getByRole('button', { name: 'Find Work Windows' }).click();
     await expect(page.getByText('No Matching Windows', { exact: true })).toBeVisible();
     await page.reload();
+    await page.getByRole('tab', { name: 'Limits', exact: true }).click();
     await expect(page.getByLabel('Maximum Wind', { exact: true })).toHaveValue('0');
+    await page.getByRole('tab', { name: 'Plan', exact: true }).click();
     await page.getByLabel('Work Profile', { exact: true }).selectOption('roofing');
+    await page.getByRole('tab', { name: 'Limits', exact: true }).click();
     await expect(page.getByLabel('Maximum Wind', { exact: true })).toHaveValue('20');
+    await page.getByRole('tab', { name: 'Plan', exact: true }).click();
     await page.getByLabel('Work Profile', { exact: true }).selectOption('painting');
+    await page.getByRole('tab', { name: 'Limits', exact: true }).click();
     await expect(page.getByLabel('Maximum Wind', { exact: true })).toHaveValue('0');
     await page.getByRole('button', { name: 'Reset', exact: true }).click();
     await expect(page.getByLabel('Maximum Wind', { exact: true })).toHaveValue('20');
@@ -64,11 +71,14 @@ test('recalculates edits, persists profile limits, and shows a no-match state', 
 test('does not show stale results after invalid input', async ({ page }) => {
     await page.goto('/');
     await page.getByRole('button', { name: 'Find Work Windows' }).click();
+    await page.getByRole('tab', { name: 'Plan', exact: true }).click();
     await page.getByLabel('Required Duration', { exact: true }).fill('0');
     await expect(page.getByRole('button', { name: 'Find Work Windows' })).toBeDisabled();
     await expect(page.getByText('Matches Your Limits', { exact: true })).toHaveCount(0);
     await expect(
-        page.getByText('Required duration must be greater than 0 and no more than 24 hours.'),
+        page
+            .getByRole('tabpanel', { name: 'Plan', exact: true })
+            .getByText('Required duration must be greater than 0 and no more than 24 hours.'),
     ).toBeVisible();
 });
 
@@ -87,6 +97,7 @@ test('handles missing forecast fields and a failed request', async ({ page }) =>
 test('changes a work location without a separate account', async ({ page }) => {
     await page.goto('/');
     await page.getByRole('button', { name: 'Change', exact: true }).click();
+    await page.getByText('Enter coordinates', { exact: true }).click();
     await page.getByLabel('Latitude', { exact: true }).fill('40');
     await page.getByLabel('Longitude', { exact: true }).fill('29');
     await page.getByRole('button', { name: 'Use Location' }).click();
